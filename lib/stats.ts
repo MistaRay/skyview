@@ -42,10 +42,15 @@ export function computeSkills(member: any): { skills: SkillInfo[]; skillAverage:
   const experience = member?.player_data?.experience ?? {};
   // Farming's level cap can be raised from 50 to 60 via Anita's shop.
   const farmingCap = 50 + (member?.jacobs_contest?.perks?.farming_level_cap ?? 0);
+  // Taming levels 51-60 are unlocked one at a time by sacrificing max-level pets.
+  const tamingCap = 50 + (member?.pets_data?.pet_care?.pet_types_sacrificed?.length ?? 0);
 
   const skills: SkillInfo[] = SKILLS.map((def) => {
     const xp = Math.floor(experience[def.apiKey] ?? 0);
-    const maxLevel = def.id === "farming" ? Math.min(farmingCap, 60) : def.maxLevel;
+    const maxLevel =
+      def.id === "farming" ? Math.min(farmingCap, 60) :
+      def.id === "taming" ? Math.min(tamingCap, 60) :
+      def.maxLevel;
     const lvl = levelFromXp(xp, def.table, maxLevel);
     return {
       id: def.id,

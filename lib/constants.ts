@@ -69,12 +69,14 @@ export const SKILLS: SkillDef[] = [
   { id: "farming", apiKey: "SKILL_FARMING", name: "Farming", maxLevel: 60, table: SKILL_XP_TABLE, inAverage: true, icon: "🌾" },
   { id: "mining", apiKey: "SKILL_MINING", name: "Mining", maxLevel: 60, table: SKILL_XP_TABLE, inAverage: true, icon: "⛏️" },
   { id: "combat", apiKey: "SKILL_COMBAT", name: "Combat", maxLevel: 60, table: SKILL_XP_TABLE, inAverage: true, icon: "⚔️" },
-  { id: "foraging", apiKey: "SKILL_FORAGING", name: "Foraging", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: true, icon: "🪓" },
+  { id: "foraging", apiKey: "SKILL_FORAGING", name: "Foraging", maxLevel: 57, table: SKILL_XP_TABLE, inAverage: true, icon: "🪓" },
   { id: "fishing", apiKey: "SKILL_FISHING", name: "Fishing", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: true, icon: "🎣" },
+  { id: "hunting", apiKey: "SKILL_HUNTING", name: "Hunting", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: true, icon: "🦌" },
   { id: "enchanting", apiKey: "SKILL_ENCHANTING", name: "Enchanting", maxLevel: 60, table: SKILL_XP_TABLE, inAverage: true, icon: "📖" },
   { id: "alchemy", apiKey: "SKILL_ALCHEMY", name: "Alchemy", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: true, icon: "🧪" },
   { id: "taming", apiKey: "SKILL_TAMING", name: "Taming", maxLevel: 60, table: SKILL_XP_TABLE, inAverage: true, icon: "🐾" },
-  { id: "carpentry", apiKey: "SKILL_CARPENTRY", name: "Carpentry", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: false, icon: "🪑" },
+  // Carpentry counts toward the in-game skill average since the Community Center update.
+  { id: "carpentry", apiKey: "SKILL_CARPENTRY", name: "Carpentry", maxLevel: 50, table: SKILL_XP_TABLE, inAverage: true, icon: "🪑" },
   { id: "runecrafting", apiKey: "SKILL_RUNECRAFTING", name: "Runecrafting", maxLevel: 25, table: RUNECRAFTING_XP_TABLE, inAverage: false, icon: "◆" },
   { id: "social", apiKey: "SKILL_SOCIAL", name: "Social", maxLevel: 25, table: SOCIAL_XP_TABLE, inAverage: false, icon: "💬" },
 ];

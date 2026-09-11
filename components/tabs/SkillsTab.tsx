@@ -6,7 +6,7 @@ export default function SkillsTab({ profile }: { profile: ProfileSummary }) {
   return (
     <div>
       <p className="mb-4 text-sm text-muted">
-        Skill average (excl. Carpentry, Runecrafting, Social):{" "}
+        Skill average (matches in-game — excludes Runecrafting and Social):{" "}
         <span className="font-semibold text-gold">{formatLevel(profile.skillAverage)}</span>
       </p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
