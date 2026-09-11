@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SkyView — Hypixel SkyBlock Profile Viewer",
+  title: "SkyView",
   description:
     "Look up any Hypixel SkyBlock player and see their networth, skills, dungeons, slayers, and more.",
 };
