@@ -15,7 +15,7 @@ export default function Home() {
         </div>
         <SearchBox autoFocus />
         <p className="text-xs text-muted">
-          Try a username like <span className="font-mono text-foreground/80">Refraction</span> or{" "}
+          Try a username like <span className="font-mono text-foreground/80">Studio6</span> or{" "}
           <span className="font-mono text-foreground/80">Technoblade</span>
         </p>
       </div>
