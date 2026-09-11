@@ -9,6 +9,7 @@ import {
   getSkyblockLevel,
   summarizeNetworth,
 } from "@/lib/stats";
+import { computeAccessories } from "@/lib/accessories";
 import { computeGear } from "@/lib/gear";
 import type { PlayerResponse, ProfileSummary } from "@/lib/types";
 
@@ -68,10 +69,16 @@ export async function GET(
         const bank = profile.banking?.balance ?? null;
 
         const { skills, skillAverage } = computeSkills(member);
-        const gear = await computeGear(member).catch((err) => {
-          console.error(`gear decode failed for ${profile.profile_id}:`, err?.message ?? err);
-          return null;
-        });
+        const [gear, accessories] = await Promise.all([
+          computeGear(member).catch((err) => {
+            console.error(`gear decode failed for ${profile.profile_id}:`, err?.message ?? err);
+            return null;
+          }),
+          computeAccessories(member).catch((err) => {
+            console.error(`accessories failed for ${profile.profile_id}:`, err?.message ?? err);
+            return null;
+          }),
+        ]);
 
         let networth = null;
         let networthError = null;
@@ -112,6 +119,7 @@ export async function GET(
           networthError,
           pets,
           gear,
+          accessories,
         };
       })
     );

@@ -92,6 +92,21 @@ export interface GearInfo {
   enderChest: (GearItem | null)[];
 }
 
+export interface AccessoryItem {
+  id: string;
+  name: string;
+  tier: string;
+  icon: string | null;
+}
+
+export interface AccessoriesInfo {
+  owned: AccessoryItem[];
+  /** Higher tiers of accessory lines the player already owns. */
+  missingUpgrades: AccessoryItem[];
+  /** Accessory lines the player doesn't own at all (base tier shown). */
+  missing: AccessoryItem[];
+}
+
 export interface PetInfo {
   name: string; // e.g. "[Lvl 100] Ender Dragon"
   price: number;
@@ -116,6 +131,7 @@ export interface ProfileSummary {
   networthError: string | null;
   pets: PetInfo[];
   gear: GearInfo | null;
+  accessories: AccessoriesInfo | null;
 }
 
 export interface PlayerResponse {
