@@ -5,13 +5,14 @@ import type { ApiError, PlayerResponse, ProfileSummary } from "@/lib/types";
 import { formatCoins, formatLevel, GAME_MODE_LABELS } from "@/lib/format";
 import { pushRecent } from "@/components/SearchBox";
 import OverviewTab from "@/components/tabs/OverviewTab";
+import GearTab from "@/components/tabs/GearTab";
 import SkillsTab from "@/components/tabs/SkillsTab";
 import DungeonsTab from "@/components/tabs/DungeonsTab";
 import SlayersTab from "@/components/tabs/SlayersTab";
 import NetworthTab from "@/components/tabs/NetworthTab";
 import PetsTab from "@/components/tabs/PetsTab";
 
-const TABS = ["Overview", "Skills", "Dungeons", "Slayers", "Networth", "Pets"] as const;
+const TABS = ["Overview", "Gear", "Skills", "Dungeons", "Slayers", "Networth", "Pets"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function ProfileViewer({ username }: { username: string }) {
@@ -127,6 +128,7 @@ export default function ProfileViewer({ username }: { username: string }) {
 
       <div className="fade-up" key={`${profile.profileId}:${tab}`}>
         {tab === "Overview" && <OverviewTab profile={profile} />}
+        {tab === "Gear" && <GearTab profile={profile} />}
         {tab === "Skills" && <SkillsTab profile={profile} />}
         {tab === "Dungeons" && <DungeonsTab profile={profile} />}
         {tab === "Slayers" && <SlayersTab profile={profile} />}

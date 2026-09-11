@@ -70,6 +70,28 @@ export interface NetworthInfo {
   categories: NetworthCategory[];
 }
 
+export interface GearItem {
+  name: string;
+  /** Raw display name including Minecraft § color codes. */
+  coloredName: string;
+  /** Raw lore lines including § color codes. */
+  lore: string[];
+  count: number;
+  skyblockId: string | null;
+  rarity: string | null;
+  icon: string | null;
+}
+
+export interface GearInfo {
+  /** [helmet, chestplate, leggings, boots] — null entries are empty slots. */
+  armor: (GearItem | null)[];
+  /** [necklace, cloak, belt, gloves] */
+  equipment: (GearItem | null)[];
+  /** 36 slots; 0-8 is the hotbar. */
+  inventory: (GearItem | null)[];
+  enderChest: (GearItem | null)[];
+}
+
 export interface PetInfo {
   name: string; // e.g. "[Lvl 100] Ender Dragon"
   price: number;
@@ -93,6 +115,7 @@ export interface ProfileSummary {
   networth: NetworthInfo | null;
   networthError: string | null;
   pets: PetInfo[];
+  gear: GearInfo | null;
 }
 
 export interface PlayerResponse {

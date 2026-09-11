@@ -9,6 +9,7 @@ import {
   getSkyblockLevel,
   summarizeNetworth,
 } from "@/lib/stats";
+import { computeGear } from "@/lib/gear";
 import type { PlayerResponse, ProfileSummary } from "@/lib/types";
 
 // skyhelper-networth is CommonJS; require-style import via interop.
@@ -67,6 +68,10 @@ export async function GET(
         const bank = profile.banking?.balance ?? null;
 
         const { skills, skillAverage } = computeSkills(member);
+        const gear = await computeGear(member).catch((err) => {
+          console.error(`gear decode failed for ${profile.profile_id}:`, err?.message ?? err);
+          return null;
+        });
 
         let networth = null;
         let networthError = null;
@@ -106,6 +111,7 @@ export async function GET(
           networth,
           networthError,
           pets,
+          gear,
         };
       })
     );
