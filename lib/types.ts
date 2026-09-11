@@ -1,0 +1,109 @@
+// Shared response types between the API route and the frontend.
+
+export interface SkillInfo {
+  id: string;
+  name: string;
+  icon: string;
+  xp: number;
+  level: number; // float including progress toward next level
+  levelInt: number;
+  maxLevel: number;
+  xpIntoLevel: number;
+  xpForNext: number | null; // null when maxed
+  inAverage: boolean;
+}
+
+export interface SlayerInfo {
+  id: string;
+  name: string;
+  xp: number;
+  level: number;
+  maxLevel: number;
+  xpForNext: number | null;
+  kills: number[]; // kills per tier (index 0 = tier I)
+}
+
+export interface DungeonClassInfo {
+  id: string;
+  xp: number;
+  level: number;
+  levelInt: number;
+  selected: boolean;
+}
+
+export interface DungeonsInfo {
+  catacombs: {
+    xp: number;
+    level: number;
+    levelInt: number;
+    xpIntoLevel: number;
+    xpForNext: number | null;
+  };
+  classAverage: number;
+  classes: DungeonClassInfo[];
+  completions: Record<string, number>; // floor -> completions, "0" = entrance
+  masterCompletions: Record<string, number>;
+  secrets: number | null;
+}
+
+export interface NetworthItem {
+  name: string;
+  count: number;
+  price: number;
+  soulbound: boolean;
+}
+
+export interface NetworthCategory {
+  id: string;
+  name: string;
+  total: number;
+  items: NetworthItem[];
+}
+
+export interface NetworthInfo {
+  total: number;
+  unsoulbound: number;
+  purse: number;
+  bank: number;
+  personalBank: number;
+  noInventory: boolean;
+  categories: NetworthCategory[];
+}
+
+export interface PetInfo {
+  name: string; // e.g. "[Lvl 100] Ender Dragon"
+  price: number;
+  count: number;
+}
+
+export interface ProfileSummary {
+  profileId: string;
+  cuteName: string;
+  gameMode: string | null;
+  selected: boolean;
+  memberCount: number;
+  skyblockLevel: number;
+  fairySouls: number;
+  purse: number;
+  bank: number | null;
+  skills: SkillInfo[];
+  skillAverage: number;
+  dungeons: DungeonsInfo | null;
+  slayers: SlayerInfo[];
+  networth: NetworthInfo | null;
+  networthError: string | null;
+  pets: PetInfo[];
+}
+
+export interface PlayerResponse {
+  username: string;
+  uuid: string;
+  rank: string | null;
+  profiles: ProfileSummary[];
+  fetchedAt: number;
+}
+
+export interface ApiError {
+  error: string;
+  code?: "NO_KEY" | "INVALID_KEY" | "NOT_FOUND" | "NO_PROFILES" | "RATE_LIMITED" | "UPSTREAM";
+}
